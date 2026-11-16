@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um Novo Dia | Projeto</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080b13;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* CAPA */
+#capa {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at center, #263047 0%, #101522 45%, #05070d 100%);
+    transition: opacity 1s;
+}
+
+#capa::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent 0 90px,
+        rgba(255,255,255,.035) 91px 92px
+      );
+    pointer-events: none;
+}
+
+.teia {
+    position: absolute;
+    font-size: 150px;
+    color: rgba(255,255,255,.10);
+}
+
+.teia1 {
+    top: -30px;
+    left: -20px;
+}
+
+.teia2 {
+    bottom: -40px;
+    right: -20px;
+    transform: rotate(180deg);
+}
+
+.conteudo {
+    position: relative;
+    z-index: 2;
+}
+
+.subtitulo {
+    color: #d7dce8;
+    letter-spacing: 7px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: clamp(45px, 9vw, 100px);
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow:
+      4px 4px 0 #a90012,
+      0 0 30px rgba(255,0,30,.35);
+}
+
+h1 span {
+    color: #e32636;
+}
+
+.descricao {
+    margin: 20px 0 35px;
+    color: #b9c2d3;
+    letter-spacing: 2px;
+}
+
+button {
+    padding: 17px 55px;
+    border: 2px solid #e32636;
+    border-radius: 5px;
+    background: #d7192d;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: 0 0 25px #d7192d55;
+}
+
+button:hover {
+    background: #123c75;
+    border-color: #3b8bff;
+    transform: scale(1.08);
+}
+
+/* ARANHA ANIMADA */
+#aranha {
+    position: fixed;
+    z-index: 20;
+    top: -100px;
+    left: -100px;
+    font-size: 65px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+#fio {
+    position: fixed;
+    z-index: 19;
+    width: 2px;
+    height: 100px;
+    background: white;
+    top: -110px;
+    left: 50%;
+    opacity: 0;
+    transform-origin: top;
+    pointer-events: none;
+}
+
+.animar {
+    animation: atravessar 2.5s ease-in-out forwards;
+}
+
+.animar-fio {
+    animation: fio 2.5s ease-in-out forwards;
+}
+
+@keyframes atravessar {
+    0% {
+        opacity: 0;
+        left: -10%;
+        top: 10%;
+        transform: rotate(-30deg);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    50% {
+        left: 48%;
+        top: 55%;
+        transform: rotate(25deg);
+    }
+
+    100% {
+        opacity: 1;
+        left: 110%;
+        top: 15%;
+        transform: rotate(-30deg);
+    }
+}
+
+@keyframes fio {
+    0%, 100% {
+        opacity: 0;
+    }
+    15%, 85% {
+        opacity: 1;
+    }
+}
+
+/* CONTEÚDO DO SITE */
+#site {
+    display: none;
+    min-height: 100vh;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#site h2 {
+    font-size: 40px;
+    color: #e32636;
+}
+
+#site p {
+    margin-top: 20px;
+    color: #ccd3df;
+}
+</style>
+</head>
+
+<body>
+
+<section id="capa">
+
+    <div class="teia teia1">🕸</div>
+    <div class="teia teia2">🕸</div>
+
+    <div class="conteudo">
+        <p class="subtitulo">UMA NOVA ERA COMEÇA</p>
+
+        <h1>UM <span>NOVO</span><br>DIA</h1>
+
+        <p class="descricao">
+            CIÊNCIA • TECNOLOGIA • INOVAÇÃO
+        </p>
+
+        <button onclick="entrar()">
+            ENTRAR
+        </button>
+    </div>
+</section>
+
+<!-- ARANHA -->
+<div id="fio"></div>
+<div id="aranha">🕷️</div>
+
+<!-- SITE -->
+<main id="site">
+    <h2>Bem-vindo a um novo dia!</h2>
+    <p>Explore nosso universo de Física, Robótica e Programação.</p>
+</main>
+
+<script>
+function entrar() {
+
+    const aranha = document.getElementById("aranha");
+    const fio = document.getElementById("fio");
+    const capa = document.getElementById("capa");
+
+    aranha.classList.remove("animar");
+    fio.classList.remove("animar-fio");
+
+    void aranha.offsetWidth;
+
+    aranha.classList.add("animar");
+    fio.classList.add("animar-fio");
+
+    setTimeout(() => {
+        capa.style.opacity = "0";
+
+        setTimeout(() => {
+            capa.style.display = "none";
+            aranha.style.display = "none";
+            fio.style.display = "none";
+            document.getElementById("site").style.display = "block";
+            document.body.style.overflow = "auto";
+        }, 1000);
+
+    }, 2500);
+}
+</script>
+
+</body>
+</html>

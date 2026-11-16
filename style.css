@@ -1,0 +1,37 @@
+const botao = document.getElementById("entrarBtn");
+
+botao.addEventListener("click", entrar);
+
+function entrar() {
+
+    const aranha = document.getElementById("aranha");
+    const fio = document.getElementById("fio");
+    const capa = document.getElementById("capa");
+
+    aranha.classList.remove("animar");
+    fio.classList.remove("animar-fio");
+
+    // Reinicia a animação
+    void aranha.offsetWidth;
+
+    aranha.classList.add("animar");
+    fio.classList.add("animar-fio");
+
+    // Depois da passagem, abre o site
+    setTimeout(() => {
+
+        capa.style.opacity = "0";
+
+        setTimeout(() => {
+            capa.style.display = "none";
+            aranha.style.display = "none";
+            fio.style.display = "none";
+
+            document.getElementById("site").style.display = "block";
+
+            document.body.style.overflow = "auto";
+
+        }, 1000);
+
+    }, 2500);
+}
